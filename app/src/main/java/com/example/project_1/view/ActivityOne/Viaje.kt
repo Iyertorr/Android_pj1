@@ -32,11 +32,11 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.project_1.R
-import com.example.project_1.Texto
+
 
 @Composable
 
-fun Registro(){
+fun Segund(){
 
     Box(
         modifier = Modifier
@@ -83,58 +83,17 @@ fun Registro(){
                 textAlign = TextAlign.Center, color = Color.Gray
 
             )
-            Spacer(modifier = Modifier.height(40.dp))
-
-            Row(
-                modifier = Modifier.fillMaxWidth(),
-                horizontalArrangement = Arrangement.Center
-            ) {
-
-                Box(
-                    modifier = Modifier
-                        .size(12.dp)
-                        .clip(CircleShape)
-                        .background(Color.Blue)
 
 
-                )
-
-                Spacer(modifier = Modifier.width(8.dp))
-
-
-                Box(
-                    modifier = Modifier
-                        .size(12.dp)
-                        .clip(CircleShape)
-                        .border(1.dp, Color.LightGray, CircleShape)
-                )
-
-                Spacer(modifier = Modifier.width(8.dp))
-
-
-                Box(
-                    modifier = Modifier
-                        .size(12.dp)
-                        .clip(CircleShape)
-                        .border(1.dp, Color.LightGray, CircleShape)
-
-                )
             }
+        Column(modifier = Modifier.align(Alignment.Center).offset(y = (780).dp)) {
 
+            navegacion(0)
+        }
        }
-
-
-
 
 
     }
 
 
-
-
-
-
-
-
-}
 

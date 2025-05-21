@@ -1,42 +1,23 @@
 package com.example.project_1
-
-import android.annotation.SuppressLint
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
-import androidx.compose.foundation.Image
-import androidx.compose.foundation.background
-import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.fillMaxHeight
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.padding
-import androidx.compose.material3.Button
-import androidx.compose.material3.Scaffold
+import androidx.compose.animation.core.FastOutSlowInEasing
+import androidx.compose.animation.core.tween
+import androidx.compose.foundation.pager.HorizontalPager
+import androidx.compose.foundation.pager.rememberPagerState
 import androidx.compose.material3.Text
-import androidx.compose.material3.TextField
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
-import androidx.compose.runtime.setValue
-import androidx.compose.ui.Alignment
-import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.res.painterResource
-import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.text.style.TextAlign
-import androidx.compose.ui.tooling.preview.Preview
-import androidx.compose.ui.unit.dp
+import androidx.compose.runtime.LaunchedEffect
+import androidx.navigation.NavController
 import com.example.project_1.ui.theme.Project_1Theme
-import com.example.project_1.view.ActivityOne.Metaa
-import com.example.project_1.view.ActivityOne.Registro
+import com.example.project_1.view.ActivityOne.Segund
+import com.example.project_1.view.ActivityOne.Tree
 import com.example.project_1.view.ActivityOne.intermedio
-import com.example.project_1.view.Scrol
+import com.example.project_1.view.project_2.navegate
+import kotlinx.coroutines.delay
+
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -44,50 +25,120 @@ class MainActivity : ComponentActivity() {
         enableEdgeToEdge()
         setContent {
             Project_1Theme {
-               Registro()
+               //Registro()
+                //Horizontal()
+                navegate()
+
+
             }
         }
     }
 }
 
-@Composable
-fun Body(){
-    Column(
-        modifier = Modifier.fillMaxSize(),
-        verticalArrangement = Arrangement.SpaceAround
-    ){
-        Image(
-            // R hace referencia a carpeta res, busca la carpeta drawble y la imagen que agregamos como vector assets.
-            painter = painterResource(R.drawable.hola),
-            contentDescription = null
 
-        )
-    }
-}
 
-@Preview(showSystemUi = true, showBackground = true)
+
+//@OptIn(ExperimentalFoundationApi::class)
 @Composable
-fun GreetingPreview() {
-    Project_1Theme {
-        Registro()
+fun Horizontal(navController: NavController){
+    val pagerState = rememberPagerState(pageCount = {3})
+    LaunchedEffect(Unit) {
+        while (true){
+            delay(3000L)
+            val nextPage = (pagerState.currentPage + 1) % 3
+            pagerState.animateScrollToPage(nextPage, animationSpec = tween(durationMillis = 600, easing = FastOutSlowInEasing))
+            }
+       }
+    HorizontalPager(state = pagerState){page ->
+        when(page){
+            0 -> Segund()
+            1 -> intermedio()
+            2 -> Tree(navController)
+
+            else -> Text("no se encontro")
+
         }
+    }
+
+
 }
+//@Composable
+//fun Primeraventana(){
+//    Box(
+//        modifier = Modifier
+//            .fillMaxSize()
+//            .background(color = Color(0xff1adcab)),
+//
+//    ){
+//        Text(text = "hola desde ventana 1",
+//                modifier = Modifier.align(Alignment.Center) )
+//
+//    }
+//
+//}
+//@Composable
+//fun Segundaventana(){
+//    Box(
+//        modifier = Modifier
+//            .fillMaxSize()
+//            .background(color = Color(0xff1adcab)),
+//
+//        ){
+//        Text(text = "hola desde ventana 2",
+//            modifier = Modifier.align(Alignment.Center) )
+//
+//    }
+//
+//}
+//@Composable
+//fun Terceraventana(){
+//    Box(
+//        modifier = Modifier
+//            .fillMaxSize()
+//            .background(color = Color(0xffc7e80f)),
+//
+//        ){
+//        Text(text = "hola desde ventana 3",
+//            modifier = Modifier.align(Alignment.Center) )
+//
+//    }
+//
+//}
+
+//fun Body(){
+//    Column(
+//        modifier = Modifier.fillMaxSize(),
+//        verticalArrangement = Arrangement.SpaceAround
+//    ){
+//        Image(
+//            // R hace referencia a carpeta res, busca la carpeta drawble y la imagen que agregamos como vector assets.
+//            painter = painterResource(R.drawable.hola),
+//            contentDescription = null
+//
+//        )
+//    }
+//}
+//
+//@Preview(showSystemUi = true, showBackground = true)
+//@Composable
+//fun GreetingPreview() {
+//    Project_1Theme {
+//        Registro()
+//        }
+//}
 
 //@SuppressLint("MutableCollectionMutableState")  /*explicacion mañana */
 //@Composable
-//fun texto(text: String){
 //
-//    var input by remember { mutableStateOf("") } // un texto de cadena que puede cambiar
-//
-//
+//fun RegisterTex(text: String){
+//    var input by remember { mutableStateOf("") }
 //    Column(modifier = Modifier.fillMaxSize().padding(54.dp)) {
-//
-//        Box(){ // caja
-//            TextField( // el textField es el cuadro del texto
-//                value = input, //el estado actual del elemento
+//        Box(){
+//            TextField(
+//                value = input,
 //                onValueChange = {input = it},
 //                label = {
-//                    Text(text = "Escibre algo") // placehodler
+//                    Text(text = "Escibre algo")
 //                },
 //                placeholder = {
 //                    Text(text = "AAAAAAA")
@@ -127,47 +178,47 @@ fun GreetingPreview() {
 //
 //    }
 //}
-
-@Composable
-fun mostrarImagen(){
-    Box(modifier = Modifier.fillMaxHeight(1f)) {
-        Image(modifier = Modifier.fillMaxSize(), painter = painterResource(id = R.drawable.ic_launcher_foreground),
-            contentDescription = "Description")
-    }
-}
-
-@Composable
-fun Base(){
-//        Column(modifier = Modifier.fillMaxSize(),
-//            horizontalAlignment = Alignment.CenterHorizontally) {
 //
-//            Fila(0.5f)
+//1@Composable
+//fun mostrarImagen(){
+//    Box(modifier = Modifier.fillMaxHeight(1f)) {
+//        Image(modifier = Modifier.fillMaxSize(), painter = painterResource(id = R.drawable.ic_launcher_foreground),
+//            contentDescription = "Description")
+//    }
+//}
 //
-//            Row {Texto("TEXTO EN MEDIO", modifier = Modifier.fillMaxWidth())}
+//@Composable
+//fun Base(){
+////        Column(modifier = Modifier.fillMaxSize(),
+////            horizontalAlignment = Alignment.CenterHorizontally) {
+////
+////            Fila(0.5f)
+////
+////            Row {Texto("TEXTO EN MEDIO", modifier = Modifier.fillMaxWidth())}
+////
+////            Fila(fraction = 1f)
+////        }
+//}
 //
-//            Fila(fraction = 1f)
-//        }
-}
-
-@Composable
-fun Texto(text: String, modifier: Modifier = Modifier) {
-    Text(
-        text = text,
-        modifier = modifier,
-        textAlign = TextAlign.Center
-    )
-}
-
-@Composable
-fun Fila(fraction: Float, modifier: Modifier = Modifier){
-    Row(modifier = Modifier.fillMaxWidth().fillMaxHeight(fraction),
-        horizontalArrangement = Arrangement.Center,
-        verticalAlignment = Alignment.CenterVertically
-    ) {
-        Texto("MI texto 3", modifier = Modifier.fillMaxWidth(0.5f))
-        Texto("MI texto 4", modifier = Modifier.fillMaxWidth(1f)) // Ocupa el resto disponible
-    }
-}
+//@Composable
+//fun Texto(text: String, modifier: Modifier = Modifier) {
+//    Text(
+//        text = text,
+//        modifier = modifier,
+//        textAlign = TextAlign.Center
+//    )
+//}
+//
+//@Composable
+//fun Fila(fraction: Float, modifier: Modifier = Modifier){
+//    Row(modifier = Modifier.fillMaxWidth().fillMaxHeight(fraction),
+//        horizontalArrangement = Arrangement.Center,
+//        verticalAlignment = Alignment.CenterVertically
+//    ) {
+//        Texto("MI texto 3", modifier = Modifier.fillMaxWidth(0.5f))
+//        Texto("MI texto 4", modifier = Modifier.fillMaxWidth(1f)) // Ocupa el resto disponible
+//    }
+//}1
 
 
 
