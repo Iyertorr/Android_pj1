@@ -1,4 +1,5 @@
 package com.example.project_1
+import Formulario
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
@@ -15,7 +16,18 @@ import com.example.project_1.ui.theme.Project_1Theme
 import com.example.project_1.view.ActivityOne.Segund
 import com.example.project_1.view.ActivityOne.Tree
 import com.example.project_1.view.ActivityOne.intermedio
+import com.example.project_1.view.actividad_Viewmodel.Campolimite
+import com.example.project_1.view.actividad_Viewmodel.Claroyoscuro
+import com.example.project_1.view.actividad_Viewmodel.CorreoConIcono
+import com.example.project_1.view.actividad_Viewmodel.PantallaTelefono
+import com.example.project_1.view.actividad_Viewmodel.contador
+import com.example.project_1.view.actividad_Viewmodel.contraseña
+import com.example.project_1.view.actividad_Viewmodel.listaeditable
+import com.example.project_1.view.actividad_Viewmodel.sesion
+import com.example.project_1.view.actividad_Viewmodel.validacionderegistro
 import com.example.project_1.view.project_2.navegate
+import com.example.project_1.view.proyect_3.MyNavigationTransitions
+import com.example.project_1.view.proyect_3.Temadinamico
 import kotlinx.coroutines.delay
 
 
@@ -27,9 +39,17 @@ class MainActivity : ComponentActivity() {
             Project_1Theme {
                //Registro()
                 //Horizontal()
-                navegate()
-
-
+//                navegate()
+//               Formulario()
+////                contador()
+//                sesion()
+//                PantallaTelefono()
+//                contraseña()
+//                Claroyoscuro()
+//                validacionderegistro()
+//                listaeditable()
+//                Campolimite()
+//                CorreoConIcono()
             }
         }
     }
