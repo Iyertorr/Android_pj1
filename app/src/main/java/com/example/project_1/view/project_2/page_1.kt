@@ -35,6 +35,8 @@ fun Registro (navController: NavHostController){
     var input1 by remember { mutableStateOf("") }
     var input2 by remember { mutableStateOf("") }
 
+
+
     Box(
         modifier = Modifier
             .fillMaxSize()
